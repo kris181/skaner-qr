@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skaner QR</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111827;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 500px;
+            text-align: center;
+            background: #1f2937;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .scanner {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 15px;
+            background: black;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .scan-line {
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            top: 50%;
+            height: 3px;
+            background: #22c55e;
+            box-shadow: 0 0 10px #22c55e;
+            animation: scan 2s infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 15%;
+            }
+            50% {
+                top: 85%;
+            }
+            100% {
+                top: 15%;
+            }
+        }
+
+        #status {
+            margin-top: 20px;
+            color: #d1d5db;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        canvas {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>?? Skaner QR</h1>
+
+    <p>Zeskanuj kod QR</p>
+
+    <div class="scanner">
+        <video id="video" autoplay playsinline></video>
+        <div class="scan-line"></div>
+    </div>
+
+    <div id="status">
+        Uruchamianie aparatu...
+    </div>
+
+    <button id="startButton" style="display:none;">
+        Uruchom skaner
+    </button>
+
+    <canvas id="canvas"></canvas>
+
+</div>
+
+<!-- Biblioteka do odczytu QR -->
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+
+<script>
+    const video = document.getElementById("video");
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const status = document.getElementById("status");
+    const startButton = document.getElementById("startButton");
+
+    let stream = null;
+    let scanning = false;
+    let alreadyScanned = false;
+
+    async function startScanner() {
+        try {
+            status.textContent = "Proszê zezwoliæ na dostêp do aparatu...";
+
+            stream = await navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: {
+                        ideal: "environment"
+                    }
+                },
+                audio: false
+            });
+
+            video.srcObject = stream;
+
+            await video.play();
+
+            scanning = true;
+            alreadyScanned = false;
+
+            status.textContent = "Skieruj aparat na kod QR";
+
+            scanQRCode();
+
+        } catch (error) {
+            console.error(error);
+
+            status.textContent =
+                "Nie uda³o siê uruchomiæ aparatu. SprawdŸ uprawnienia.";
+
+            startButton.style.display = "inline-block";
+        }
+    }
+
+    function scanQRCode() {
+
+        if (!scanning || alreadyScanned) {
+            return;
+        }
+
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            ctx.drawImage(
+                video,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            const imageData = ctx.getImageData(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            const code = jsQR(
+                imageData.data,
+                imageData.width,
+                imageData.height,
+                {
+                    inversionAttempts: "dontInvert"
+                }
+            );
+
+            if (code) {
+
+                alreadyScanned = true;
+                scanning = false;
+
+                const qrData = code.data;
+
+                status.textContent = "Kod odczytany!";
+
+                // Zatrzymanie aparatu
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+
+                /*
+                    Przejœcie do podstrony.
+
+                    Przyk³ad:
+                    QR = ABC123
+
+                    zostanie otwarta:
+                    wynik.html?kod=ABC123
+                */
+
+                const url =
+                    "wynik.html?kod=" +
+                    encodeURIComponent(qrData);
+
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 500);
+            }
+        }
+
+        requestAnimationFrame(scanQRCode);
+    }
+
+    startButton.addEventListener("click", () => {
+        startButton.style.display = "none";
+        startScanner();
+    });
+
+    // Uruchomienie skanera
+    startScanner();
+</script>
+
+</body>
+</html>
