@@ -1,256 +1,1368 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skaner QR</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<title>Breń Garden — Ogród pełen natury</title>
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #111827;
-            font-family: Arial, sans-serif;
-            color: white;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .container {
-            width: 95%;
-            max-width: 500px;
-            text-align: center;
-            background: #1f2937;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        h1 {
-            margin-top: 0;
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #243127;
+    background: #f7f8f3;
+}
 
-        .scanner {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1;
-            overflow: hidden;
-            border-radius: 15px;
-            background: black;
-        }
+/* =========================
+   NAVBAR
+========================= */
 
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 
-        .scan-line {
-            position: absolute;
-            left: 10%;
-            right: 10%;
-            top: 50%;
-            height: 3px;
-            background: #22c55e;
-            box-shadow: 0 0 10px #22c55e;
-            animation: scan 2s infinite;
-        }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-        @keyframes scan {
-            0% {
-                top: 15%;
-            }
-            50% {
-                top: 85%;
-            }
-            100% {
-                top: 15%;
-            }
-        }
+    padding: 18px 6%;
 
-        #status {
-            margin-top: 20px;
-            color: #d1d5db;
-        }
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(12px);
 
-        button {
-            margin-top: 15px;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 10px;
-            background: #22c55e;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
 
-        button:hover {
-            background: #16a34a;
-        }
+.logo {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    font-weight: bold;
+    color: #285c36;
+}
 
-        canvas {
-            display: none;
-        }
-    </style>
+.logo span {
+    color: #8cae45;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #304438;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: #6b983c;
+}
+
+.menu-button {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+
+    padding: 120px 7% 70px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(18,44,26,0.88),
+            rgba(18,44,26,0.45),
+            rgba(18,44,26,0.15)
+        ),
+        url("https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=2000&q=85");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 650px;
+    color: white;
+}
+
+.hero-label {
+    display: inline-block;
+
+    padding: 8px 16px;
+    margin-bottom: 20px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+
+    font-size: 14px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 0.95;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #b8d86c;
+}
+
+.hero p {
+    max-width: 570px;
+
+    font-size: 20px;
+    line-height: 1.7;
+
+    color: #edf5e8;
+
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 15px 25px;
+
+    border-radius: 40px;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.25s;
+}
+
+.button-primary {
+    background: #9fc65b;
+    color: #17351f;
+}
+
+.button-primary:hover {
+    background: #b4d775;
+    transform: translateY(-2px);
+}
+
+.button-light {
+    border: 1px solid rgba(255,255,255,0.5);
+    color: white;
+    background: rgba(255,255,255,0.1);
+}
+
+.button-light:hover {
+    background: white;
+    color: #23452d;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    padding: 100px 7%;
+}
+
+.section-header {
+    max-width: 700px;
+    margin-bottom: 50px;
+}
+
+.section-label {
+    color: #769c43;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(35px, 5vw, 55px);
+    color: #29432f;
+    margin-bottom: 18px;
+}
+
+.section-header p {
+    color: #647067;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    background: #f7f8f3;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 60px;
+    align-items: center;
+}
+
+.about-image {
+    height: 550px;
+
+    border-radius: 30px;
+
+    background:
+        url("https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1200&q=85");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.about-text p {
+    color: #647067;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.feature {
+    padding: 20px;
+
+    background: white;
+    border-radius: 18px;
+
+    box-shadow: 0 10px 30px rgba(40,60,40,0.07);
+}
+
+.feature-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.feature h3 {
+    margin-bottom: 7px;
+    color: #2c4933;
+}
+
+.feature p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* =========================
+   GARDEN CATEGORIES
+========================= */
+
+.garden {
+    background: #edf3e7;
+}
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.card {
+    min-height: 330px;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: flex-end;
+
+    transition: 0.35s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card:nth-child(1) {
+    background-image:
+        url("https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=80");
+}
+
+.card:nth-child(2) {
+    background-image:
+        url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80");
+}
+
+.card:nth-child(3) {
+    background-image:
+        url("https://images.unsplash.com/photo-1603349677447-3f9f4f1a0f9e?auto=format&fit=crop&w=900&q=80");
+}
+
+.card:nth-child(4) {
+    background-image:
+        url("https://images.unsplash.com/photo-1599629954294-14df9e95f9e1?auto=format&fit=crop&w=900&q=80");
+}
+
+.card-overlay {
+    width: 100%;
+
+    padding: 25px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(10,30,15,0.9)
+        );
+}
+
+.card h3 {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.card p {
+    color: #e7eee5;
+    font-size: 14px;
+}
+
+/* =========================
+   RELAX
+========================= */
+
+.relax {
+    min-height: 550px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(22,50,29,0.75),
+            rgba(22,50,29,0.75)
+        ),
+        url("https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=2000&q=85");
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+}
+
+.relax-content {
+    max-width: 650px;
+}
+
+.relax h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(40px, 6vw, 65px);
+    margin-bottom: 20px;
+}
+
+.relax p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #e4ece2;
+}
+
+/* =========================
+   CHILDREN
+========================= */
+
+.children {
+    background: #fffdf7;
+}
+
+.children-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.children-image {
+    height: 500px;
+
+    border-radius: 30px;
+
+    background:
+        url("https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=1200&q=85");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.children-text p {
+    color: #647067;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.child-list {
+    list-style: none;
+}
+
+.child-list li {
+    margin-bottom: 14px;
+    font-size: 16px;
+}
+
+.child-list li::before {
+    content: "?";
+    color: #6c9c3d;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* =========================
+   VISIT
+========================= */
+
+.visit {
+    background: #e7efe0;
+}
+
+.visit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.visit-card {
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+}
+
+.visit-card .icon {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.visit-card h3 {
+    color: #29432f;
+    margin-bottom: 10px;
+}
+
+.visit-card p {
+    color: #69736b;
+    line-height: 1.7;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #18251b;
+    color: #dce5da;
+
+    padding: 60px 7%;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    color: white;
+}
+
+.footer-text {
+    max-width: 350px;
+    margin-top: 12px;
+    line-height: 1.7;
+    color: #aebbae;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a {
+    color: #c8d2c5;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.1);
+
+    color: #8d998e;
+    font-size: 13px;
+}
+
+/* =========================
+   QR BUTTON
+========================= */
+
+.qr-button {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 65px;
+    height: 65px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #8fb94e;
+    color: white;
+
+    font-size: 27px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
+
+    z-index: 2000;
+
+    transition: 0.25s;
+}
+
+.qr-button:hover {
+    transform: scale(1.08);
+}
+
+/* =========================
+   QR MODAL
+========================= */
+
+.qr-modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(10,20,12,0.75);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 3000;
+
+    padding: 20px;
+}
+
+.qr-modal.active {
+    display: flex;
+}
+
+.qr-box {
+    width: 100%;
+    max-width: 480px;
+
+    background: #fff;
+
+    color: #243127;
+
+    border-radius: 28px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    position: relative;
+}
+
+.qr-box h2 {
+    font-family: Georgia, serif;
+    color: #29432f;
+    margin-bottom: 10px;
+}
+
+.qr-box p {
+    color: #68736a;
+    margin-bottom: 20px;
+}
+
+.close-qr {
+    position: absolute;
+
+    right: 18px;
+    top: 15px;
+
+    border: none;
+    background: none;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    color: #607060;
+}
+
+.scanner {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 1;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #050805;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.scan-line {
+    position: absolute;
+
+    left: 10%;
+    right: 10%;
+
+    top: 15%;
+
+    height: 3px;
+
+    background: #65d13f;
+
+    box-shadow: 0 0 15px #65d13f;
+
+    animation: scan 2s infinite;
+}
+
+@keyframes scan {
+    0% {
+        top: 15%;
+    }
+
+    50% {
+        top: 85%;
+    }
+
+    100% {
+        top: 15%;
+    }
+}
+
+#status {
+    margin-top: 15px;
+    color: #68736a;
+}
+
+#startButton {
+    margin-top: 15px;
+
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #8fb94e;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .about-grid,
+    .children-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .visit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image,
+    .children-image {
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    section {
+        padding: 70px 5%;
+    }
+
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: 280px;
+    }
+
+    .qr-button {
+        width: 58px;
+        height: 58px;
+        right: 18px;
+        bottom: 18px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-    <h1>?? Skaner QR</h1>
+<nav class="navbar">
 
-    <p>Zeskanuj kod QR</p>
-
-    <div class="scanner">
-        <video id="video" autoplay playsinline></video>
-        <div class="scan-line"></div>
+    <div class="logo">
+        Breń <span>Garden</span>
     </div>
 
-    <div id="status">
-        Uruchamianie aparatu...
+    <ul class="nav-links">
+        <li><a href="#ogrod">O ogrodzie</a></li>
+        <li><a href="#rosliny">Rośliny</a></li>
+        <li><a href="#relaks">Relaks</a></li>
+        <li><a href="#dzieci">Dla dzieci</a></li>
+        <li><a href="#zwiedzanie">Zwiedzanie</a></li>
+    </ul>
+
+    <button class="menu-button">?</button>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            ?? Miejsce stworzone z miłości do natury
+        </div>
+
+        <h1>
+            Ogród, który<br>
+            <span>warto odkryć.</span>
+        </h1>
+
+        <p>
+            Witaj w Breń Garden — wyjątkowym miejscu,
+            gdzie rośliny, kwiaty, natura i relaks tworzą
+            przestrzeń dla całej rodziny.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#ogrod" class="button button-primary">
+                Odkryj ogród
+            </a>
+
+            <a href="#zwiedzanie" class="button button-light">
+                Zaplanuj wizytę
+            </a>
+
+        </div>
+
     </div>
 
-    <button id="startButton" style="display:none;">
-        Uruchom skaner
-    </button>
+</header>
 
-    <canvas id="canvas"></canvas>
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about" id="ogrod">
+
+    <div class="about-grid">
+
+        <div class="about-image"></div>
+
+        <div class="about-text">
+
+            <div class="section-label">
+                Breń Garden
+            </div>
+
+            <div class="section-header">
+
+                <h2>
+                    Więcej niż ogród.
+                </h2>
+
+            </div>
+
+            <p>
+                Breń Garden to przestrzeń, w której można
+                zwolnić, odpocząć i cieszyć się pięknem
+                otaczającej przyrody.
+            </p>
+
+            <p>
+                Spaceruj wśród roślin, odkrywaj kolejne
+                zakątki ogrodu, poznawaj kwiaty i spędź
+                spokojny dzień z rodziną.
+            </p>
+
+            <div class="features">
+
+                <div class="feature">
+                    <div class="feature-icon">??</div>
+                    <h3>Natura</h3>
+                    <p>Zieleń, rośliny i kwiaty.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">??</div>
+                    <h3>Relaks</h3>
+                    <p>Spokojne miejsca do odpoczynku.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">???????????</div>
+                    <h3>Dla rodzin</h3>
+                    <p>Miejsce dla małych i dużych.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">??</div>
+                    <h3>Odkrywanie</h3>
+                    <p>Mnóstwo miejsc do poznania.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ROŚLINY
+========================= -->
+
+<section class="garden" id="rosliny">
+
+    <div class="section-header">
+
+        <div class="section-label">
+            Odkrywaj
+        </div>
+
+        <h2>
+            Świat roślin
+        </h2>
+
+        <p>
+            Każda część ogrodu ma swój charakter.
+            Odkrywaj różne gatunki, kolory i zapachy
+            podczas spaceru po Breń Garden.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-overlay">
+                <h3>Zielone zakątki</h3>
+                <p>Rośliny, drzewa i naturalna przestrzeń.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-overlay">
+                <h3>Kwiaty</h3>
+                <p>Kolorowe kompozycje zmieniające się wraz z porami roku.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-overlay">
+                <h3>Ogród pełen życia</h3>
+                <p>Miejsce dla roślin, owadów i ptaków.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-overlay">
+                <h3>Ukryte miejsca</h3>
+                <p>Zakątki, które czekają na odkrycie.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RELAX
+========================= -->
+
+<section class="relax" id="relaks">
+
+    <div class="relax-content">
+
+        <div class="section-label">
+            Zatrzymaj się
+        </div>
+
+        <h2>
+            Czas na oddech.
+        </h2>
+
+        <p>
+            Usiądź w cieniu drzew, posłuchaj natury
+            i pozwól sobie na chwilę spokoju.
+            Breń Garden to miejsce, w którym nie trzeba
+            się spieszyć.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DZIECI
+========================= -->
+
+<section class="children" id="dzieci">
+
+    <div class="children-grid">
+
+        <div class="children-image"></div>
+
+        <div class="children-text">
+
+            <div class="section-label">
+                Małe odkrywcy
+            </div>
+
+            <div class="section-header">
+
+                <h2>
+                    Zabawa dla najmłodszych.
+                </h2>
+
+            </div>
+
+            <p>
+                Ogród to nie tylko spacer. Najmłodsi
+                odwiedzający również znajdą tutaj coś
+                dla siebie.
+            </p>
+
+            <ul class="child-list">
+
+                <li>Kolorowy plac zabaw</li>
+                <li>Przestrzeń do aktywnej zabawy</li>
+                <li>Kontakt z naturą</li>
+                <li>Miejsce na rodzinny odpoczynek</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ZWIEDZANIE
+========================= -->
+
+<section class="visit" id="zwiedzanie">
+
+    <div class="section-header">
+
+        <div class="section-label">
+            Zapraszamy
+        </div>
+
+        <h2>
+            Zaplanuj swoją wizytę
+        </h2>
+
+        <p>
+            Przyjedź, zwolnij i odkryj Breń Garden
+            we własnym tempie.
+        </p>
+
+    </div>
+
+    <div class="visit-grid">
+
+        <div class="visit-card">
+
+            <div class="icon">??</div>
+
+            <h3>Godziny otwarcia</h3>
+
+            <p>
+                Informacje o aktualnych godzinach
+                otwarcia ogrodu.
+            </p>
+
+        </div>
+
+        <div class="visit-card">
+
+            <div class="icon">??</div>
+
+            <h3>Jak do nas trafić?</h3>
+
+            <p>
+                Sprawdź lokalizację Breń Garden
+                i zaplanuj swoją trasę.
+            </p>
+
+        </div>
+
+        <div class="visit-card">
+
+            <div class="icon">???</div>
+
+            <h3>Informacje dla odwiedzających</h3>
+
+            <p>
+                Najważniejsze informacje przed
+                rozpoczęciem zwiedzania.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <div class="footer-logo">
+                Breń Garden
+            </div>
+
+            <p class="footer-text">
+                Ogród pełen natury, kolorów,
+                relaksu i rodzinnych chwil.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#ogrod">O ogrodzie</a>
+            <a href="#rosliny">Rośliny</a>
+            <a href="#relaks">Relaks</a>
+            <a href="#dzieci">Dla dzieci</a>
+            <a href="#zwiedzanie">Zwiedzanie</a>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Breń Garden. Wszystkie prawa zastrzeżone.
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     QR BUTTON
+========================= -->
+
+<button
+    class="qr-button"
+    id="qrButton"
+    title="Skaner QR">
+
+    Skaner
+
+</button>
+
+
+<!-- =========================
+     QR MODAL
+========================= -->
+
+<div class="qr-modal" id="qrModal">
+
+    <div class="qr-box">
+
+        <button
+            class="close-qr"
+            id="closeQr">
+            ×
+        </button>
+
+        <h2>Skaner QR</h2>
+
+        <p>
+            Zeskanuj kod znajdujący się
+            przy wybranym miejscu lub roślinie.
+        </p>
+
+        <div class="scanner">
+
+            <video
+                id="video"
+                autoplay
+                playsinline>
+            </video>
+
+            <div class="scan-line"></div>
+
+        </div>
+
+        <div id="status">
+            Uruchamianie aparatu...
+        </div>
+
+        <button
+            id="startButton"
+            style="display:none;">
+            Uruchom aparat
+        </button>
+
+    </div>
 
 </div>
 
-<!-- Biblioteka do odczytu QR -->
-<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 
 <script>
-    const video = document.getElementById("video");
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    const status = document.getElementById("status");
-    const startButton = document.getElementById("startButton");
 
-    let stream = null;
-    let scanning = false;
-    let alreadyScanned = false;
+/* =========================
+   QR MODAL
+========================= */
 
-    async function startScanner() {
-        try {
-            status.textContent = "Prosz� zezwoli� na dost�p do aparatu...";
+const qrButton = document.getElementById("qrButton");
+const qrModal = document.getElementById("qrModal");
+const closeQr = document.getElementById("closeQr");
 
-            stream = await navigator.mediaDevices.getUserMedia({
-                video: {
-                    facingMode: {
-                        ideal: "environment"
-                    }
-                },
-                audio: false
-            });
+qrButton.addEventListener("click", () => {
+    qrModal.classList.add("active");
+    startCamera();
+});
 
-            video.srcObject = stream;
+closeQr.addEventListener("click", () => {
+    qrModal.classList.remove("active");
+    stopCamera();
+});
 
-            await video.play();
+qrModal.addEventListener("click", (event) => {
 
-            scanning = true;
-            alreadyScanned = false;
-
-            status.textContent = "Skieruj aparat na kod QR";
-
-            scanQRCode();
-
-        } catch (error) {
-            console.error(error);
-
-            status.textContent =
-                "Nie uda�o si� uruchomi� aparatu. Sprawd� uprawnienia.";
-
-            startButton.style.display = "inline-block";
-        }
+    if (event.target === qrModal) {
+        qrModal.classList.remove("active");
+        stopCamera();
     }
 
-    function scanQRCode() {
+});
 
-        if (!scanning || alreadyScanned) {
-            return;
-        }
 
-        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+/* =========================
+   CAMERA
+========================= */
 
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+const video = document.getElementById("video");
+const status = document.getElementById("status");
+const startButton = document.getElementById("startButton");
 
-            ctx.drawImage(
-                video,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
+let stream = null;
 
-            const imageData = ctx.getImageData(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
+async function startCamera() {
 
-            const code = jsQR(
-                imageData.data,
-                imageData.width,
-                imageData.height,
-                {
-                    inversionAttempts: "dontInvert"
+    try {
+
+        status.textContent =
+            "Uruchamianie aparatu...";
+
+        stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: {
+                    ideal: "environment"
                 }
-            );
+            },
+            audio: false
+        });
 
-            if (code) {
+        video.srcObject = stream;
 
-                alreadyScanned = true;
-                scanning = false;
+        status.textContent =
+            "Skieruj aparat na kod QR.";
 
-                const qrData = code.data;
+    } catch (error) {
 
-                status.textContent = "Kod odczytany!";
+        console.error(error);
 
-                // Zatrzymanie aparatu
-                if (stream) {
-                    stream.getTracks().forEach(track => track.stop());
-                }
+        status.textContent =
+            "Nie udało się uruchomić aparatu.";
 
-                /*
-                    Przej�cie do podstrony.
-
-                    Przyk�ad:
-                    QR = ABC123
-
-                    zostanie otwarta:
-                    wynik.html?kod=ABC123
-                */
-
-                const url =
-                    "wynik.html?kod=" +
-                    encodeURIComponent(qrData);
-
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 500);
-            }
-        }
-
-        requestAnimationFrame(scanQRCode);
+        startButton.style.display = "inline-block";
     }
+}
 
-    startButton.addEventListener("click", () => {
-        startButton.style.display = "none";
-        startScanner();
+function stopCamera() {
+
+    if (!stream) return;
+
+    stream.getTracks().forEach(track => {
+        track.stop();
     });
 
-    // Uruchomienie skanera
-    startScanner();
+    stream = null;
+    video.srcObject = null;
+}
+
+startButton.addEventListener("click", () => {
+    startButton.style.display = "none";
+    startCamera();
+});
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuButton = document.querySelector(".menu-button");
+const navLinks = document.querySelector(".nav-links");
+
+menuButton.addEventListener("click", () => {
+
+    const visible =
+        navLinks.style.display === "flex";
+
+    navLinks.style.display =
+        visible ? "none" : "flex";
+
+    if (!visible) {
+
+        navLinks.style.position = "absolute";
+        navLinks.style.top = "70px";
+        navLinks.style.left = "0";
+        navLinks.style.width = "100%";
+        navLinks.style.padding = "25px";
+
+        navLinks.style.flexDirection = "column";
+
+        navLinks.style.background = "white";
+    }
+
+});
+
 </script>
 
 </body>
