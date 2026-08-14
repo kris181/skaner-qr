@@ -1,18 +1,14 @@
-
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Breń Garden — Ogród pełen natury</title>
+<title>Breń Garden — Ogród pełen natury i rodzinnych atrakcji</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
-
-/* =========================================================
-   KOLORY
-========================================================= */
 
 :root{
     --green-deep:#10291d;
@@ -23,23 +19,13 @@
     --sage:#a9c2a5;
     --sage-light:#dce9d9;
     --mint:#edf5eb;
-
     --cream:#f5f8f1;
     --cream-light:#fbfdf9;
-    --white:#ffffff;
-
-    --gold:#91ad73;
-    --gold-light:#b8cca1;
-
+    --white:#fff;
     --text:#2d4032;
     --muted:#68776b;
-
-    --shadow:rgba(28,62,38,.13);
+    --gold:#91ad73;
 }
-
-/* =========================================================
-   RESET
-========================================================= */
 
 *{
     box-sizing:border-box;
@@ -57,63 +43,47 @@ body{
     background:var(--cream);
 }
 
-/* =========================================================
-   TOP BAR
-========================================================= */
+/* TOP BAR */
 
 .topbar{
     min-height:46px;
     background:var(--green-dark);
     color:#edf5eb;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     text-align:center;
     padding:10px 55px;
-
     font-size:13px;
     font-weight:600;
     letter-spacing:.3px;
 }
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* NAVIGATION */
 
 .navbar{
     position:sticky;
     top:0;
     z-index:1000;
-
     min-height:82px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     gap:34px;
     padding:12px 4%;
-
     background:rgba(248,252,246,.97);
     border-bottom:1px solid rgba(49,91,61,.13);
-
     box-shadow:0 4px 18px rgba(25,60,35,.08);
-
     backdrop-filter:blur(10px);
 }
 
 .logo{
     position:absolute;
     left:4%;
-
     color:var(--green-dark);
-
     font-family:Cinzel,Georgia,serif;
     font-size:22px;
     font-weight:700;
-
     white-space:nowrap;
 }
 
@@ -123,23 +93,18 @@ body{
 
 .nav-links{
     list-style:none;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     gap:27px;
 }
 
 .nav-links a{
     position:relative;
-
     color:#304837;
     text-decoration:none;
-
     font-size:14px;
     font-weight:600;
-
     transition:.25s;
 }
 
@@ -153,40 +118,28 @@ body{
 
 .nav-links a.active::after{
     content:"";
-
     position:absolute;
     left:0;
     right:0;
     bottom:-9px;
-
     height:2px;
-
     background:var(--green-medium);
     border-radius:10px;
 }
-
-/* BUTTON NAV */
 
 .ticket{
     position:absolute;
     right:3%;
     top:50%;
-
     transform:translateY(-50%);
-
     background:var(--green);
     color:#fff;
-
     text-decoration:none;
-
     padding:15px 23px;
     border-radius:18px;
-
     font-size:13px;
     font-weight:800;
-
     box-shadow:0 7px 18px rgba(30,75,42,.22);
-
     transition:.25s;
 }
 
@@ -197,32 +150,23 @@ body{
 
 .menu-button{
     display:none;
-
     border:0;
     background:transparent;
-
     color:var(--green-dark);
-
     font-size:30px;
     cursor:pointer;
 }
 
-/* =========================================================
-   HERO
-========================================================= */
+/* HERO */
 
 .hero{
     min-height:570px;
-
     position:relative;
     overflow:hidden;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     text-align:center;
-
     padding:80px 6% 100px;
 
     background:
@@ -233,19 +177,13 @@ body{
             rgba(164,192,159,.72) 60%,
             rgba(65,105,70,.62) 100%
         ),
-        linear-gradient(
-            180deg,
-            #e3efe0,
-            #a5bda3
-        );
+        linear-gradient(180deg,#e3efe0,#a5bda3);
 }
 
 .hero::before{
     content:"";
-
     position:absolute;
     inset:-10%;
-
     background:
         linear-gradient(
             180deg,
@@ -253,71 +191,51 @@ body{
             rgba(43,78,49,.22)
         ),
         url("https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=2200&q=85");
-
     background-size:cover;
     background-position:center;
-
     opacity:.34;
-
-    filter:saturate(.8) hue-rotate(5deg);
+    filter:saturate(.8);
 }
 
 .hero::after{
     content:"";
-
     position:absolute;
-
     width:750px;
     height:750px;
-
     border-radius:50%;
-
     background:
         radial-gradient(
             circle,
             rgba(240,250,232,.72),
             rgba(240,250,232,0) 68%
         );
-
     top:-330px;
     left:50%;
-
     transform:translateX(-50%);
 }
 
 .hero-content{
     position:relative;
     z-index:2;
-
     max-width:1000px;
 }
 
 .hero-kicker{
     color:var(--green-medium);
-
     font-weight:800;
-
     text-transform:uppercase;
     letter-spacing:3px;
-
     font-size:12px;
-
     margin-bottom:16px;
 }
 
 .hero h1{
     font-family:Cinzel,Georgia,serif;
-
     text-transform:uppercase;
-
     color:var(--green-dark);
-
     font-size:clamp(48px,8vw,100px);
-
     line-height:.88;
-
     letter-spacing:3px;
-
     text-shadow:
         0 2px 0 rgba(255,255,255,.9),
         0 5px 18px rgba(25,65,35,.16);
@@ -325,61 +243,42 @@ body{
 
 .hero h1 span{
     display:block;
-
     color:var(--green);
-
     font-size:.72em;
-
     letter-spacing:6px;
-
     margin-top:12px;
 }
 
 .hero-subtitle{
     margin:28px auto 0;
-
     color:#405746;
-
     font-family:Libre Baskerville,Georgia,serif;
-
     font-size:18px;
-
-    max-width:650px;
-
+    max-width:680px;
     line-height:1.7;
 }
 
 .hero-buttons{
     display:flex;
-
     justify-content:center;
-
     gap:12px;
-
     margin-top:30px;
-
     flex-wrap:wrap;
 }
 
 .button{
     display:inline-block;
-
     padding:13px 24px;
-
     border-radius:6px;
-
     text-decoration:none;
-
     font-weight:700;
     font-size:14px;
-
     transition:.25s;
 }
 
 .button-primary{
     background:var(--green);
     color:#fff;
-
     box-shadow:0 6px 15px rgba(32,77,43,.15);
 }
 
@@ -391,7 +290,6 @@ body{
 .button-secondary{
     border:1px solid var(--green);
     color:var(--green);
-
     background:rgba(248,252,246,.72);
 }
 
@@ -400,82 +298,59 @@ body{
     color:#fff;
 }
 
-/* =========================================================
-   FEATURE STRIP
-========================================================= */
+/* FEATURE CARDS */
 
 .feature-strip{
     position:relative;
     z-index:5;
-
     margin:-55px auto 0;
-
     width:min(1100px,90%);
-
     display:grid;
     grid-template-columns:repeat(3,1fr);
-
     gap:18px;
 }
 
 .feature-card{
     overflow:hidden;
-
     background:#f9fcf7;
-
     border:1px solid rgba(68,112,75,.18);
-
     border-radius:14px;
-
     box-shadow:0 12px 30px rgba(28,65,38,.14);
-
     transition:.3s;
 }
 
 .feature-card:hover{
     transform:translateY(-7px);
-
     box-shadow:0 18px 38px rgba(28,65,38,.19);
 }
 
 .feature-card img{
     width:100%;
-    height:145px;
-
+    height:155px;
     object-fit:cover;
-
     display:block;
-
     filter:saturate(.85);
 }
 
 .feature-card-body{
     text-align:center;
-
     padding:19px 15px 22px;
 }
 
 .feature-card h3{
     font-family:Libre Baskerville,Georgia,serif;
-
     color:var(--green-dark);
-
     font-size:18px;
-
     margin-bottom:7px;
 }
 
 .feature-card p{
     color:var(--muted);
-
     font-size:13px;
-
     line-height:1.55;
 }
 
-/* =========================================================
-   COMMON SECTIONS
-========================================================= */
+/* COMMON */
 
 section{
     padding:100px 6%;
@@ -483,47 +358,33 @@ section{
 
 .section-header{
     max-width:760px;
-
     margin:0 auto 45px;
-
     text-align:center;
 }
 
 .section-label{
     color:var(--green-medium);
-
     font-weight:800;
-
     text-transform:uppercase;
-
     letter-spacing:2.5px;
-
     font-size:11px;
-
     margin-bottom:12px;
 }
 
 .section-header h2{
     font-family:Cinzel,Georgia,serif;
-
     color:var(--green-dark);
-
     font-size:clamp(34px,5vw,58px);
-
     margin-bottom:17px;
 }
 
 .section-header p{
     color:var(--muted);
-
     line-height:1.8;
-
     font-size:16px;
 }
 
-/* =========================================================
-   ABOUT
-========================================================= */
+/* ABOUT */
 
 .about{
     background:
@@ -532,29 +393,21 @@ section{
             rgba(244,249,241,.95)
         ),
         url("https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1800&q=80");
-
     background-size:cover;
 }
 
 .about-grid{
     max-width:1120px;
-
     margin:auto;
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:55px;
-
     align-items:center;
 }
 
 .about-image{
     min-height:500px;
-
     border-radius:10px;
-
     background:
         linear-gradient(
             180deg,
@@ -562,89 +415,65 @@ section{
             rgba(24,58,40,.25)
         ),
         url("https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1300&q=85");
-
     background-size:cover;
     background-position:center;
-
-    box-shadow:
-        14px 14px 0 rgba(91,132,91,.20);
-
-    border:1px solid rgba(60,100,65,.12);
+    box-shadow:14px 14px 0 rgba(91,132,91,.20);
 }
 
-.about-text h2{
+.about-text h2,
+.children-text h2{
     font-family:Cinzel,Georgia,serif;
-
     color:var(--green-dark);
-
     font-size:42px;
-
     margin-bottom:18px;
 }
 
-.about-text p{
+.about-text p,
+.children-text p{
     color:var(--muted);
-
     line-height:1.85;
-
     margin-bottom:17px;
 }
 
 .features{
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:13px;
-
     margin-top:27px;
 }
 
 .feature{
     padding:18px;
-
     background:#fbfdf9;
-
     border:1px solid rgba(57,91,62,.10);
-
     border-radius:10px;
-
     transition:.25s;
 }
 
 .feature:hover{
     transform:translateY(-3px);
-
     border-color:rgba(72,119,78,.25);
 }
 
 .feature-icon{
     color:var(--green-medium);
-
     font-size:24px;
-
     margin-bottom:8px;
 }
 
 .feature h3{
     color:var(--green-dark);
-
     font-size:16px;
-
     margin-bottom:5px;
 }
 
 .feature p{
     font-size:13px;
-
     margin:0;
-
     line-height:1.55;
 }
 
-/* =========================================================
-   PLANTS
-========================================================= */
+/* PLANTS */
 
 .garden{
     background:
@@ -658,54 +487,37 @@ section{
 
 .cards{
     max-width:1120px;
-
     margin:auto;
-
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
     gap:17px;
 }
 
 .card{
     min-height:350px;
-
     position:relative;
-
     overflow:hidden;
-
     display:flex;
-
     align-items:flex-end;
-
     border-radius:11px;
-
     background-size:cover;
     background-position:center;
-
     transition:.3s;
-
     box-shadow:0 8px 20px rgba(28,65,38,.12);
 }
 
 .card::before{
     content:"";
-
     position:absolute;
-
     inset:0;
-
-    background:
-        linear-gradient(
-            transparent 30%,
-            rgba(12,39,22,.90)
-        );
+    background:linear-gradient(
+        transparent 30%,
+        rgba(12,39,22,.90)
+    );
 }
 
 .card:hover{
     transform:translateY(-7px);
-
     box-shadow:0 15px 30px rgba(28,65,38,.20);
 }
 
@@ -727,41 +539,29 @@ section{
 
 .card-overlay{
     position:relative;
-
     z-index:1;
-
     width:100%;
-
     padding:23px 20px;
-
     color:#fff;
 }
 
 .card h3{
     font-family:Libre Baskerville,Georgia,serif;
-
     font-size:20px;
-
     margin-bottom:7px;
 }
 
 .card p{
     font-size:13px;
-
     line-height:1.5;
-
     color:#edf5ed;
 }
 
-/* =========================================================
-   RELAX
-========================================================= */
+/* RELAX */
 
 .relax{
     min-height:540px;
-
     display:flex;
-
     align-items:center;
 
     background:
@@ -779,7 +579,6 @@ section{
 
 .relax-content{
     max-width:700px;
-
     margin-left:7%;
 }
 
@@ -789,25 +588,132 @@ section{
 
 .relax h2{
     font-family:Cinzel,Georgia,serif;
-
     font-size:clamp(40px,6vw,67px);
-
     margin-bottom:18px;
-
     color:#f2f7ef;
 }
 
 .relax p{
     font-size:18px;
-
     line-height:1.85;
-
     color:#e5eee3;
 }
 
 /* =========================================================
-   CHILDREN
+   DUŻY PLAC ZABAW — WYRÓŻNIONA SEKCJA
 ========================================================= */
+
+.kids-highlight{
+    max-width:1150px;
+    margin:0 auto;
+
+    padding:105px 6%;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:65px;
+
+    align-items:center;
+}
+
+.kids-highlight-image{
+    min-height:520px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            rgba(35,75,42,.05),
+            rgba(35,75,42,.18)
+        ),
+        url("https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=1300&q=85")
+        center/cover;
+
+    box-shadow:
+        17px 17px 0 rgba(111,149,111,.20);
+}
+
+.kids-highlight-content{
+    padding:10px 0;
+}
+
+.kids-highlight h2{
+    font-family:Cinzel,Georgia,serif;
+
+    color:var(--green-dark);
+
+    font-size:clamp(38px,5vw,58px);
+
+    line-height:1.05;
+
+    margin-bottom:20px;
+}
+
+.kids-highlight h2 span{
+    display:block;
+    color:var(--green-medium);
+}
+
+.kids-highlight-content > p{
+    color:var(--muted);
+
+    font-size:16px;
+
+    line-height:1.85;
+
+    margin-bottom:25px;
+}
+
+.kids-attractions{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+    margin-bottom:30px;
+}
+
+.kids-attractions div{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:14px;
+
+    background:var(--mint);
+
+    border:1px solid rgba(71,118,83,.12);
+
+    border-radius:9px;
+
+    color:var(--green-dark);
+
+    font-size:13px;
+    font-weight:600;
+}
+
+.kids-attractions strong{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:28px;
+    height:28px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    color:white;
+
+    font-size:12px;
+}
+
+/* CHILDREN PAGE */
 
 .children{
     background:#f9fcf7;
@@ -815,11 +721,9 @@ section{
 
 .children-grid{
     max-width:1100px;
-
     margin:auto;
 
     display:grid;
-
     grid-template-columns:1fr 1fr;
 
     gap:55px;
@@ -844,30 +748,43 @@ section{
         -14px 14px 0 rgba(112,149,105,.17);
 }
 
-.children-text h2{
-    font-family:Cinzel,Georgia,serif;
+.children-intro{
+    display:inline-flex;
+
+    align-items:center;
+    gap:8px;
+
+    margin-bottom:18px;
+
+    padding:9px 14px;
+
+    background:var(--sage-light);
+
+    border-radius:30px;
 
     color:var(--green-dark);
 
-    font-size:42px;
+    font-size:12px;
+    font-weight:800;
+}
 
-    margin-bottom:18px;
+.children-intro::before{
+    content:"★";
+
+    color:var(--green-medium);
 }
 
 .children-text p{
-    color:var(--muted);
-
-    line-height:1.85;
-
     margin-bottom:20px;
 }
 
 .child-list{
     list-style:none;
+    margin-top:20px;
 }
 
 .child-list li{
-    padding:11px 0;
+    padding:12px 0;
 
     border-bottom:1px solid rgba(55,85,59,.10);
 
@@ -882,9 +799,44 @@ section{
     margin-right:12px;
 }
 
-/* =========================================================
-   VISIT
-========================================================= */
+.children-attractions{
+    margin-top:30px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+}
+
+.children-attraction{
+    padding:17px;
+
+    background:var(--mint);
+
+    border-radius:10px;
+
+    border:1px solid rgba(71,118,83,.12);
+}
+
+.children-attraction strong{
+    display:block;
+
+    color:var(--green-dark);
+
+    font-size:15px;
+
+    margin-bottom:5px;
+}
+
+.children-attraction span{
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+/* VISIT */
 
 .visit{
     background:
@@ -898,11 +850,9 @@ section{
 
 .visit-grid{
     max-width:1100px;
-
     margin:auto;
 
     display:grid;
-
     grid-template-columns:repeat(3,1fr);
 
     gap:18px;
@@ -924,15 +874,11 @@ section{
 
 .visit-card:hover{
     transform:translateY(-5px);
-
-    box-shadow:0 14px 30px rgba(35,70,40,.14);
 }
 
 .visit-card .icon{
     font-size:28px;
-
     color:var(--green-medium);
-
     margin-bottom:13px;
 }
 
@@ -946,13 +892,10 @@ section{
 
 .visit-card p{
     color:var(--muted);
-
     line-height:1.7;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
+/* FOOTER */
 
 footer{
     background:
@@ -969,7 +912,6 @@ footer{
 
 .footer-grid{
     max-width:1100px;
-
     margin:auto;
 
     display:flex;
@@ -1035,9 +977,7 @@ footer{
     font-size:12px;
 }
 
-/* =========================================================
-   QR
-========================================================= */
+/* QR */
 
 .qr-button{
     position:fixed;
@@ -1057,7 +997,6 @@ footer{
     color:#fff;
 
     font-weight:800;
-
     font-size:11px;
 
     cursor:pointer;
@@ -1083,7 +1022,6 @@ footer{
     display:none;
 
     align-items:center;
-
     justify-content:center;
 
     z-index:3000;
@@ -1171,6 +1109,7 @@ video{
 
     left:10%;
     right:10%;
+
     top:15%;
 
     height:3px;
@@ -1183,9 +1122,13 @@ video{
 }
 
 @keyframes scan{
+
     0%{top:15%}
+
     50%{top:85%}
+
     100%{top:15%}
+
 }
 
 #status{
@@ -1214,9 +1157,7 @@ video{
     cursor:pointer;
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+/* RESPONSIVE */
 
 @media(max-width:1050px){
 
@@ -1239,6 +1180,7 @@ video{
     .cards{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:820px){
@@ -1249,13 +1191,11 @@ video{
 
     .navbar{
         min-height:68px;
-
         padding:10px 5%;
     }
 
     .logo{
         position:static;
-
         margin-right:auto;
     }
 
@@ -1304,12 +1244,14 @@ video{
     }
 
     .about-grid,
-    .children-grid{
+    .children-grid,
+    .kids-highlight{
         grid-template-columns:1fr;
     }
 
     .about-image,
-    .children-image{
+    .children-image,
+    .kids-highlight-image{
         min-height:390px;
     }
 
@@ -1320,6 +1262,7 @@ video{
     .relax-content{
         margin-left:0;
     }
+
 }
 
 @media(max-width:560px){
@@ -1359,6 +1302,20 @@ video{
         width:92%;
     }
 
+    .kids-highlight{
+        padding:75px 5%;
+        gap:40px;
+    }
+
+    .kids-highlight-image{
+        min-height:320px;
+    }
+
+    .kids-attractions,
+    .children-attractions{
+        grid-template-columns:1fr;
+    }
+
     .qr-button{
         width:58px;
         height:58px;
@@ -1366,23 +1323,20 @@ video{
         right:16px;
         bottom:16px;
     }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================================================
-     TOP BAR
-========================================================= -->
+<!-- TOP BAR -->
 
 <div class="topbar">
-    ✦ Breń Garden — ogród pełen zieleni, natury i spokoju. Zapraszamy!
+    ✦ Breń Garden — ogród pełen natury, relaksu i rodzinnych atrakcji. Zapraszamy!
 </div>
 
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
+<!-- NAVIGATION -->
 
 <nav class="navbar">
 
@@ -1448,15 +1402,9 @@ video{
 
 </nav>
 
-<!-- =========================================================
-     PAGE CONTENT
-========================================================= -->
-
 <main id="pageContent"></main>
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1469,37 +1417,20 @@ video{
             </div>
 
             <p class="footer-text">
-                Ogród pełen zieleni, natury, relaksu
-                i rodzinnych chwil.
+                Ogród pełen zieleni, natury, relaksu,
+                rodzinnych chwil i wielkich dziecięcych przygód.
             </p>
 
         </div>
 
         <div class="footer-links">
 
-            <a href="#" data-page="home">
-                Strona główna
-            </a>
-
-            <a href="#" data-page="ogrod">
-                O ogrodzie
-            </a>
-
-            <a href="#" data-page="rosliny">
-                Rośliny
-            </a>
-
-            <a href="#" data-page="relaks">
-                Relaks
-            </a>
-
-            <a href="#" data-page="dzieci">
-                Dla dzieci
-            </a>
-
-            <a href="#" data-page="zwiedzanie">
-                Zwiedzanie
-            </a>
+            <a href="#" data-page="home">Strona główna</a>
+            <a href="#" data-page="ogrod">O ogrodzie</a>
+            <a href="#" data-page="rosliny">Rośliny</a>
+            <a href="#" data-page="relaks">Relaks</a>
+            <a href="#" data-page="dzieci">Dla dzieci</a>
+            <a href="#" data-page="zwiedzanie">Zwiedzanie</a>
 
         </div>
 
@@ -1511,9 +1442,7 @@ video{
 
 </footer>
 
-<!-- =========================================================
-     QR BUTTON
-========================================================= -->
+<!-- QR -->
 
 <button
     class="qr-button"
@@ -1523,17 +1452,11 @@ video{
     QR
 </button>
 
-<div
-    class="qr-modal"
-    id="qrModal"
->
+<div class="qr-modal" id="qrModal">
 
     <div class="qr-box">
 
-        <button
-            class="close-qr"
-            id="closeQr"
-        >
+        <button class="close-qr" id="closeQr">
             ×
         </button>
 
@@ -1574,7 +1497,7 @@ video{
 </div>
 
 <!-- =========================================================
-     HOME
+     STRONA GŁÓWNA
 ========================================================= -->
 
 <template id="page-home">
@@ -1584,7 +1507,7 @@ video{
         <div class="hero-content">
 
             <div class="hero-kicker">
-                Miejsce stworzone z miłości do natury
+                Natura • Relaks • Rodzinna przygoda
             </div>
 
             <h1>
@@ -1593,9 +1516,9 @@ video{
             </h1>
 
             <p class="hero-subtitle">
-                Ogród, w którym zieleń, piękno i chwila
-                wytchnienia spotykają się w jednym
-                wyjątkowym miejscu.
+                Wyjątkowy ogród, w którym natura,
+                relaks i rodzinna zabawa spotykają się
+                w jednym miejscu.
             </p>
 
             <div class="hero-buttons">
@@ -1610,10 +1533,10 @@ video{
 
                 <a
                     href="#"
-                    data-page="zwiedzanie"
+                    data-page="dzieci"
                     class="button button-secondary"
                 >
-                    Zaplanuj wizytę
+                    Zobacz atrakcje dla dzieci
                 </a>
 
             </div>
@@ -1621,6 +1544,8 @@ video{
         </div>
 
     </header>
+
+    <!-- TRZY NAJWAŻNIEJSZE KARTY -->
 
     <div class="feature-strip">
 
@@ -1638,8 +1563,8 @@ video{
                 </h3>
 
                 <p>
-                    Odkryj zieloną przestrzeń stworzoną
-                    dla odpoczynku i kontaktu z naturą.
+                    Odkryj wyjątkową zieloną przestrzeń
+                    stworzoną dla odpoczynku i kontaktu z naturą.
                 </p>
 
                 <a
@@ -1669,8 +1594,8 @@ video{
                 </h3>
 
                 <p>
-                    Odkrywaj różnorodność zieleni,
-                    kwiatów, zapachów i naturalnych zakątków.
+                    Odkrywaj kolory, zapachy i zielone zakątki
+                    ogrodu.
                 </p>
 
                 <a
@@ -1686,31 +1611,33 @@ video{
 
         </article>
 
+        <!-- NOWA KARTA: DZIECI -->
+
         <article class="feature-card">
 
             <img
-                src="https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=900&q=85"
-                alt="Ogród i natura"
+                src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=900&q=85"
+                alt="Duży plac zabaw dla dzieci"
             >
 
             <div class="feature-card-body">
 
                 <h3>
-                    Zaplanuj wizytę
+                    Wielki plac zabaw
                 </h3>
 
                 <p>
-                    Przyjedź, zwolnij i spędź czas
-                    blisko natury.
+                    Mnóstwo atrakcji dla dzieci,
+                    zabawa, ruch i przygoda na świeżym powietrzu.
                 </p>
 
                 <a
                     href="#"
-                    data-page="zwiedzanie"
+                    data-page="dzieci"
                     class="button button-primary"
                     style="margin-top:12px;padding:9px 15px;font-size:12px;"
                 >
-                    Informacje
+                    Zobacz atrakcje
                 </a>
 
             </div>
@@ -1718,6 +1645,75 @@ video{
         </article>
 
     </div>
+
+    <!-- WYRÓŻNIONY PLAC ZABAW -->
+
+    <section class="kids-highlight">
+
+        <div class="kids-highlight-image"></div>
+
+        <div class="kids-highlight-content">
+
+            <div class="section-label">
+                Wielka przygoda dla najmłodszych
+            </div>
+
+            <h2>
+                Duży plac zabaw
+                <span>pełen atrakcji!</span>
+            </h2>
+
+            <p>
+                Breń Garden to nie tylko piękny ogród.
+                Na najmłodszych czeka duży plac zabaw,
+                gdzie dzieci mogą aktywnie spędzać czas,
+                bawić się i odkrywać nowe przygody
+                w otoczeniu zieleni.
+            </p>
+
+            <div class="kids-attractions">
+
+                <div>
+                    <strong>★</strong>
+                    <span>
+                        Kolorowe zjeżdżalnie
+                    </span>
+                </div>
+
+                <div>
+                    <strong>★</strong>
+                    <span>
+                        Huśtawki
+                    </span>
+                </div>
+
+                <div>
+                    <strong>★</strong>
+                    <span>
+                        Strefa wspinaczki
+                    </span>
+                </div>
+
+                <div>
+                    <strong>★</strong>
+                    <span>
+                        Duża przestrzeń do zabawy
+                    </span>
+                </div>
+
+            </div>
+
+            <a
+                href="#"
+                data-page="dzieci"
+                class="button button-primary"
+            >
+                Odkryj atrakcje dla dzieci
+            </a>
+
+        </div>
+
+    </section>
 
 </template>
 
@@ -1751,7 +1747,8 @@ video{
 
                 <p>
                     Spaceruj wśród roślin, odkrywaj kolejne
-                    zakątki i spędź spokojny dzień z rodziną.
+                    zakątki, a najmłodsi mogą korzystać
+                    z dużego placu zabaw pełnego atrakcji.
                 </p>
 
                 <div class="features">
@@ -1795,11 +1792,11 @@ video{
                         </div>
 
                         <h3>
-                            Dla rodzin
+                            Rodzinna zabawa
                         </h3>
 
                         <p>
-                            Miejsce dla małych i dużych.
+                            Duży plac zabaw i atrakcje dla dzieci.
                         </p>
 
                     </div>
@@ -1837,10 +1834,10 @@ video{
 
                     <a
                         href="#"
-                        data-page="zwiedzanie"
+                        data-page="dzieci"
                         class="button button-secondary"
                     >
-                        Zaplanuj wizytę
+                        Atrakcje dla dzieci
                     </a>
 
                 </div>
@@ -2024,28 +2021,39 @@ video{
 
             <div class="children-text">
 
-                <div class="section-label">
-                    Mali odkrywcy
+                <div class="children-intro">
+                    DUŻY PLAC ZABAW • WIELE ATRAKCJI
                 </div>
 
                 <h2>
-                    Zabawa dla najmłodszych.
+                    Wielka zabawa
+                    dla najmłodszych!
                 </h2>
 
                 <p>
-                    Ogród to nie tylko spacer.
-                    Najmłodsi odwiedzający również znajdą
-                    tutaj coś dla siebie.
+                    Breń Garden to idealne miejsce na rodzinny
+                    dzień. Na dzieci czeka duży plac zabaw
+                    z wieloma atrakcjami, przestrzenią do ruchu
+                    oraz miejscami, w których można przeżywać
+                    prawdziwe małe przygody.
                 </p>
 
                 <ul class="child-list">
 
                     <li>
-                        Kolorowy plac zabaw
+                        Duży, kolorowy plac zabaw
                     </li>
 
                     <li>
-                        Przestrzeń do aktywnej zabawy
+                        Zjeżdżalnie i huśtawki
+                    </li>
+
+                    <li>
+                        Strefa wspinaczki i aktywnej zabawy
+                    </li>
+
+                    <li>
+                        Duża przestrzeń do biegania i zabawy
                     </li>
 
                     <li>
@@ -2058,9 +2066,61 @@ video{
 
                 </ul>
 
+                <div class="children-attractions">
+
+                    <div class="children-attraction">
+
+                        <strong>
+                            🛝 Zjeżdżalnie
+                        </strong>
+
+                        <span>
+                            Mnóstwo frajdy i aktywnej zabawy.
+                        </span>
+
+                    </div>
+
+                    <div class="children-attraction">
+
+                        <strong>
+                            ★ Huśtawki
+                        </strong>
+
+                        <span>
+                            Klasyczna zabawa dla najmłodszych.
+                        </span>
+
+                    </div>
+
+                    <div class="children-attraction">
+
+                        <strong>
+                            ▲ Wspinaczka
+                        </strong>
+
+                        <span>
+                            Ruch, wyzwania i odkrywanie.
+                        </span>
+
+                    </div>
+
+                    <div class="children-attraction">
+
+                        <strong>
+                            ✦ Przygoda
+                        </strong>
+
+                        <span>
+                            Wielka przestrzeń do wspólnej zabawy.
+                        </span>
+
+                    </div>
+
+                </div>
+
                 <div
                     class="hero-buttons"
-                    style="justify-content:flex-start;margin-top:28px;"
+                    style="justify-content:flex-start;margin-top:30px;"
                 >
 
                     <a
@@ -2068,7 +2128,7 @@ video{
                         data-page="zwiedzanie"
                         class="button button-primary"
                     >
-                        Zaplanuj wizytę
+                        Zaplanuj rodzinną wizytę
                     </a>
 
                 </div>
@@ -2102,6 +2162,8 @@ video{
             <p>
                 Przyjedź, zwolnij i odkryj Breń Garden
                 we własnym tempie.
+                Czeka na Ciebie natura, relaks
+                oraz duży plac zabaw dla dzieci.
             </p>
 
         </div>
@@ -2145,16 +2207,16 @@ video{
             <div class="visit-card">
 
                 <div class="icon">
-                    ✦
+                    ★
                 </div>
 
                 <h3>
-                    Informacje dla odwiedzających
+                    Dla całej rodziny
                 </h3>
 
                 <p>
-                    Najważniejsze informacje przed
-                    rozpoczęciem zwiedzania.
+                    Ogród, natura, relaks oraz duży
+                    plac zabaw pełen atrakcji dla dzieci.
                 </p>
 
             </div>
@@ -2166,18 +2228,20 @@ video{
 </template>
 
 <!-- =========================================================
-     JAVASCRIPT — SPA
+     JAVASCRIPT
 ========================================================= -->
 
 <script>
 
-const pageContent = document.getElementById("pageContent");
-const navLinks = document.getElementById("navLinks");
-const menuButton = document.getElementById("menuButton");
+const pageContent =
+    document.getElementById("pageContent");
 
-/* =========================================================
-   NAWIGACJA SPA
-========================================================= */
+const navLinks =
+    document.getElementById("navLinks");
+
+const menuButton =
+    document.getElementById("menuButton");
+
 
 function showPage(page, updateUrl = true){
 
@@ -2199,8 +2263,6 @@ function showPage(page, updateUrl = true){
         behavior:"instant"
     });
 
-    /* Aktywna pozycja menu */
-
     document
         .querySelectorAll(".nav-links a[data-page]")
         .forEach(link => {
@@ -2212,11 +2274,7 @@ function showPage(page, updateUrl = true){
 
         });
 
-    /* Zamknij menu mobilne */
-
     navLinks.classList.remove("open");
-
-    /* Aktualizacja adresu */
 
     if(updateUrl){
 
@@ -2227,8 +2285,6 @@ function showPage(page, updateUrl = true){
         );
 
     }
-
-    /* Linki wewnątrz aktualnej strony */
 
     pageContent
         .querySelectorAll("[data-page]")
@@ -2252,9 +2308,7 @@ function showPage(page, updateUrl = true){
 }
 
 
-/* =========================================================
-   MENU GŁÓWNE
-========================================================= */
+/* NAV */
 
 document
     .querySelectorAll("[data-page]")
@@ -2276,9 +2330,7 @@ document
     });
 
 
-/* =========================================================
-   MENU MOBILE
-========================================================= */
+/* MOBILE MENU */
 
 menuButton.addEventListener(
     "click",
@@ -2290,9 +2342,7 @@ menuButton.addEventListener(
 );
 
 
-/* =========================================================
-   BACK / FORWARD
-========================================================= */
+/* BROWSER HISTORY */
 
 window.addEventListener(
     "popstate",
@@ -2309,9 +2359,7 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   START
-========================================================= */
+/* INITIAL PAGE */
 
 const initialPage =
     location.hash.replace("#","") ||
@@ -2348,8 +2396,6 @@ const startButton =
 let stream = null;
 
 
-/* Otwórz skaner */
-
 qrButton.addEventListener(
     "click",
     () => {
@@ -2362,15 +2408,11 @@ qrButton.addEventListener(
 );
 
 
-/* Zamknij */
-
 closeQr.addEventListener(
     "click",
     closeScanner
 );
 
-
-/* Kliknięcie poza oknem */
 
 qrModal.addEventListener(
     "click",
@@ -2386,10 +2428,6 @@ qrModal.addEventListener(
 );
 
 
-/* =========================================================
-   START CAMERA
-========================================================= */
-
 async function startCamera(){
 
     try{
@@ -2400,8 +2438,10 @@ async function startCamera(){
         startButton.style.display =
             "none";
 
-        if(!navigator.mediaDevices ||
-           !navigator.mediaDevices.getUserMedia){
+        if(
+            !navigator.mediaDevices ||
+            !navigator.mediaDevices.getUserMedia
+        ){
 
             throw new Error(
                 "Camera API unavailable"
@@ -2444,10 +2484,6 @@ async function startCamera(){
 }
 
 
-/* =========================================================
-   STOP CAMERA
-========================================================= */
-
 function stopCamera(){
 
     if(!stream){
@@ -2469,10 +2505,6 @@ function stopCamera(){
 }
 
 
-/* =========================================================
-   CLOSE SCANNER
-========================================================= */
-
 function closeScanner(){
 
     qrModal.classList.remove("active");
@@ -2481,10 +2513,6 @@ function closeScanner(){
 
 }
 
-
-/* =========================================================
-   RESTART CAMERA
-========================================================= */
 
 startButton.addEventListener(
     "click",
